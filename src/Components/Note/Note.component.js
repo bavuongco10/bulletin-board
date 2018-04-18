@@ -1,11 +1,12 @@
 import React from 'react';
 import FaTrash from 'react-icons/lib/fa/trash';
-import { withHandlers } from 'recompose';
+import { withHandlers, pure, compose } from 'recompose';
 
 import WithTransform from '../../Components/WithTransform/WithTransform.component'
 import './Note.component.css';
 
-const Note = ({ id ,note, onRemove, onUpdate }) => {
+const Note = ({ id ,note , onRemove, onUpdate }) => {
+  console.log('===========', id);
   return (
     <WithTransform>
       {
@@ -23,11 +24,14 @@ const Note = ({ id ,note, onRemove, onUpdate }) => {
   )
 };
 
-export default withHandlers({
-  onRemove: ({ onRemoveNote, id }) => event => {
-    onRemoveNote({ id }, event);
-  },
-  onUpdate: ({ onUpdateNote, id }) => event => {
-    onUpdateNote({ id, note: event.currentTarget.value});
-  }
-})(Note);
+export default compose(
+  pure,
+  withHandlers({
+    onRemove: ({ onRemoveNote, id }) => event => {
+      onRemoveNote({ id }, event);
+    },
+    onUpdate: ({ onUpdateNote, id }) => event => {
+      onUpdateNote({ id, note: event.currentTarget.value});
+    }
+  }),
+)(Note);
