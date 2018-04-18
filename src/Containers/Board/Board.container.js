@@ -1,6 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import axios from 'axios';
+
+import Note from '../../Components/Note/Note.component';
+import './Board.container.css';
 
 class Board extends Component {
   state = {
@@ -25,22 +28,18 @@ class Board extends Component {
     });
   };
 
-  _renderNote = ({ id, note }) => (
-    <div>{note}</div>
-  )
-
   render () {
     const { notes } = this.state;
     return (
-      <Fragment>
-        { notes.map(this._renderNote)}
-      </Fragment>
+      <div className="board">
+        { notes.map(({ id, ...restProps}) => <Note key={id} {...restProps} />)}
+      </div>
     )
   }
 };
 
 Board.defaultProps = {
-  count: 25
+  count: 50
 };
 
 export default Board;
