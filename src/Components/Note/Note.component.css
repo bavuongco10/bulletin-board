@@ -8,6 +8,7 @@
     left: 100px;
     box-shadow: 5px 5px 15px rgba(0 , 0, 0, 0.2);
     opacity: 0.8;
+    padding: 4px;
 }
 
 .note:hover {
@@ -18,4 +19,27 @@
 
 .active {
     cursor: grabbing;
+}
+
+form {
+    height: 100%;
+}
+
+form textarea {
+    height: 82%;
+    width: 96%;
+    resize: none;
+    outline: none;
+    background: inherit;
+    border: 0;
+}
+
+form textarea:focus{
+    background: white;
+    border: dimgrey solid thin;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row-reverse;
 }
