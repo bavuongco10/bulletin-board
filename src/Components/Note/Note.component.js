@@ -6,7 +6,6 @@ import WithTransform from '../../Components/WithTransform/WithTransform.componen
 import './Note.component.css';
 
 const Note = ({ id ,note , onRemove, onUpdate }) => {
-  console.log('===========', id);
   return (
     <WithTransform>
       {
