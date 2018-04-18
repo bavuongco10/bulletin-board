@@ -7,6 +7,13 @@
     top: 200px;
     left: 100px;
     box-shadow: 5px 5px 15px rgba(0 , 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+.note:hover {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    opacity: 1;
+    z-index: 9999;
 }
 
 .active {
