@@ -28,11 +28,17 @@ class Board extends Component {
     });
   };
 
+  _onRemoveNote = ({ id }) => {
+    this.setState(prevState => ({
+      notes: _.filter(prevState.notes, (note => note.id !== id))
+    }))
+  };
+
   render () {
     const { notes } = this.state;
     return (
       <div className="board">
-        { notes.map(({ id, ...restProps}) => <Note key={id} {...restProps} />)}
+        { notes.map((prop) => <Note key={prop.id} {...prop} onRemoveNote={this._onRemoveNote}/>)}
       </div>
     )
   }
