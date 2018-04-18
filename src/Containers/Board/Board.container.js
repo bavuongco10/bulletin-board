@@ -28,6 +28,14 @@ class Board extends Component {
     });
   };
 
+  _onUpdateNote = ({ i, note: newNode }) => {
+    this.setState(prevState => {
+      return ({
+        notes: _.map(prevState.notes, (item => (item.id !== i) ? item : {...item, node: newNode})),
+      });
+    })
+  };
+
   _onRemoveNote = ({ id }) => {
     this.setState(prevState => ({
       notes: _.filter(prevState.notes, (note => note.id !== id))
@@ -38,7 +46,14 @@ class Board extends Component {
     const { notes } = this.state;
     return (
       <div className="board">
-        { notes.map((prop) => <Note key={prop.id} {...prop} onRemoveNote={this._onRemoveNote}/>)}
+        { notes.map((prop) =>
+            <Note
+              {...prop}
+              key={prop.id}
+              onRemoveNote={this._onRemoveNote}
+              onUpdateNote={this._onUpdateNote}
+            />
+        )}
       </div>
     )
   }

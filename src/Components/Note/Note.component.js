@@ -5,7 +5,7 @@ import { withHandlers } from 'recompose';
 import WithTransform from '../../Components/WithTransform/WithTransform.component'
 import './Note.component.css';
 
-const Note = ({ id ,note, onRemove }) => {
+const Note = ({ id ,note, onRemove, onUpdate }) => {
   return (
     <WithTransform>
       {
@@ -15,7 +15,7 @@ const Note = ({ id ,note, onRemove }) => {
               <div className="controls">
                 <button onClick={onRemove}><FaTrash /></button>
               </div>
-              <textarea placeholder={note} required/>
+              <textarea defaultValue={note} required onBlur={onUpdate} />
             </form>
           </div>
       }
@@ -26,5 +26,8 @@ const Note = ({ id ,note, onRemove }) => {
 export default withHandlers({
   onRemove: ({ onRemoveNote, id }) => event => {
     onRemoveNote({ id }, event);
+  },
+  onUpdate: ({ onUpdateNote, id }) => event => {
+    onUpdateNote({ id, note: event.currentTarget.value});
   }
 })(Note);
